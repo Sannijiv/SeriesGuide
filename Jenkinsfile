@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Print') {
+        stage('Build') {
             steps {
-                echo 'Hello world!'
+                bat 'gradlew clean build'
             }
         }
 
@@ -11,8 +11,15 @@ pipeline {
             steps {
                 echo 'Starting testing'
                 bat 'gradlew test'
-                echo 'Stopped testing'
+                echo 'Testing completed'
             }
         }
+
+        stage('Sonar') {
+            steps {
+                echo 'Starting sonar scan'
+                echo 'Sonar scan completed'
+                }
+            }
     }
 }

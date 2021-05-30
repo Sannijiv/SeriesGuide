@@ -15,11 +15,24 @@ pipeline {
             }
         }
 
-        stage('Sonar') {
-            steps {
-                echo 'Starting sonar scan'
-                echo 'Sonar scan completed'
+//       stage('Sonar') {
+//            steps {
+//                echo 'Starting sonar scan'
+//                bat 'gradlew sonar'
+//                echo 'Sonar scan completed'
+//                }
+//            }
+//        }
+
+         stage('Deploy') {
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
                 }
             }
+            steps {
+                bat 'gradlew generateMetadataFileForCentralPublication'
+            }
+         }
     }
 }

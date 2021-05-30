@@ -273,6 +273,20 @@ dependencies {
 
 }
 
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "SeriesGuide"
+        property "sonar.projectKey", "SeriesGuide"
+        property "sonar.host.url", "http://localhost:9000/"
+        property "sonar.language", "kotlin"
+        property "sonar.sources", "src/main/"
+        property "sonar.login", "LOGIN"
+        property "sonar.password", "PASSWORD"
+    }
+}
+
 endpointsClient {
     discoveryDocs = ['src/endpoints/account-v2-rest.discovery',
                      'src/endpoints/episodes-v2-rest.discovery',

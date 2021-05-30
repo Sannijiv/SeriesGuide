@@ -1,9 +1,14 @@
+tasks.whenTaskAdded { task ->
+    if (task.name.contains("uploadCrashlyticsMappingFile")) {
+        task.enabled = false
+    }
+}
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 if (project.file('google-services.json').exists()) {
-    apply plugin: 'com.google.gms.google-services'
+//    apply plugin: 'com.google.gms.google-services'
 }
 apply plugin: 'com.google.firebase.crashlytics'
 
@@ -266,6 +271,20 @@ dependencies {
     testImplementation "androidx.test:core:$androidXtestCoreVersion"
     testImplementation "org.mockito:mockito-inline:3.6.28"
 
+}
+
+apply plugin: "org.sonarqube"
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "SeriesGuide"
+        property "sonar.projectKey", "SeriesGuide"
+        property "sonar.host.url", "http://localhost:9000/"
+        property "sonar.language", "kotlin"
+        property "sonar.sources", "src/main/"
+        property "sonar.login", "LOGIN"
+        property "sonar.password", "PASSWORD"
+    }
 }
 
 endpointsClient {

@@ -59,6 +59,7 @@ buildscript {
         // https://firebase.google.com/support/release-notes/android
         classpath 'com.google.gms:google-services:4.3.5'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.5.1'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.1"
     }
 }
 
@@ -90,6 +91,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 }
 

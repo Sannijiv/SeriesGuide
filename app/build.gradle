@@ -265,7 +265,6 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.5.1'
     testImplementation "androidx.test:core:$androidXtestCoreVersion"
     testImplementation "org.mockito:mockito-inline:3.6.28"
-    testImplementation "org.powermock:powermock-api-mockito:1.6.4"
 
 }
 

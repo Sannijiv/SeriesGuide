@@ -1,9 +1,12 @@
 package com.battlelancer.seriesguide.ui.movies;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import android.content.Context;
@@ -66,19 +69,19 @@ public class MovieToolsTests {
     @Test
     public void testDeleteMovieFromWatchlist() {
         //Arrange
-        MockedStatic<MovieTools> movieToolsMockedStatic = Mockito.mockStatic(MovieTools.class);
+        MockedStatic<MovieTools> movieToolsMockedStatic = mockStatic(MovieTools.class);
         int movieTmbdId = 1;
+        final String[] testString = new String[1];
 
         //Act
         movieToolsMockedStatic.when(() -> MovieTools.removeFromWatchlist(context, movieTmbdId))
                 .then(invocation -> {
-                    return "passed";
+                    testString[0] = "passed";
+                    return 1;
                 });
-
-
-
+        MovieTools.removeFromWatchlist(context, movieTmbdId);
 
         //Assert
-
+        assertEquals(testString[0], "passed");
     }
 }

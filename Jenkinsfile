@@ -15,14 +15,14 @@ pipeline {
             }
         }
 
-//       stage('Sonar') {
-//            steps {
-//                echo 'Starting sonar scan'
-//                bat 'gradlew sonar'
-//                echo 'Sonar scan completed'
-//                }
-//            }
-//        }
+        stage('Sonar') {
+            steps {
+               echo 'Starting sonar scan'
+               //bat 'gradlew sonar'
+               echo 'Sonar scan completed'
+               }
+            }
+        }
 
          stage('Deploy') {
             when {

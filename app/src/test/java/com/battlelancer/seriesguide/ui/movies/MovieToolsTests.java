@@ -2,6 +2,7 @@ package com.battlelancer.seriesguide.ui.movies;
 
 import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
@@ -37,14 +38,13 @@ public class MovieToolsTests {
     public void testSearchMovieAndDisplay() {
         //Arrange
         int movieTmbdId = 1;
-        Movie movie = new Movie();
-
+        
         //Act
         Mockito.when(movieTools.getMovieSummary(movieTmbdId)).thenReturn(new Movie());
         Movie testMovie = movieTools.getMovieSummary(movieTmbdId);
 
         //Assert
-        assertEquals(movie, testMovie);
+        assertNotNull(testMovie);
     }
 
     /*

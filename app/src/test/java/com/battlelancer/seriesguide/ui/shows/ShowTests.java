@@ -45,6 +45,18 @@ public class ShowTests {
     @Mock
     Context context;
 
+    /**
+     * Search for a show and display information.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of showDetails conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, the value is either null or not.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: All used values are instantiated in either the test itself or the test file, therefore they exist.
+     * Cardinality: There are enough values.
+     * Time: Everything in the test happens in (correct) order.
+     */
     @Test
     public void testSearchAndDisplayShow() {
         //Arrange
@@ -63,6 +75,18 @@ public class ShowTests {
         assertNotNull(showDetails);
     }
 
+    /**
+     * Delete a movie from the watch list.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of testString conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, the value is either "passed" or not.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: All used values are instantiated in either the test itself or the test file, therefore they exist.
+     * Cardinality: There are enough values.
+     * Time: Everything in the test happens in (correct) order, including unregistering the mock instance.
+     */
     @Test
     public void testMarkEpisodeAsSeen() {
         //Arrange
@@ -86,6 +110,18 @@ public class ShowTests {
         episodeToolsMockedStatic.close();
     }
 
+    /**
+     * Delete a movie from the watch list.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of testString conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, the value is either "passed" or not.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: All used values are instantiated in either the test itself or the test file, therefore they exist.
+     * Cardinality: There are enough values.
+     * Time: Everything in the test happens in (correct) order, including unregistering the mock instance.
+     */
     @Test
     public void testMarkEpisodeAsUnSeen() {
         //Arrange

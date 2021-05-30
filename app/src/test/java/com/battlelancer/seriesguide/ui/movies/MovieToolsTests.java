@@ -34,6 +34,18 @@ public class MovieToolsTests {
     @Mock
     Context context;
 
+    /**
+     * Search for movie and get its details.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of testMovie conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, that being not null.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: Test already checks whether the value is not null. Will fail if value is null.
+     * Cardinality: There are enough values.
+     * Time: Everything in code happens in (correct) order.
+     */
     @Test
     public void testSearchMovieAndDisplay() {
         //Arrange
@@ -47,9 +59,17 @@ public class MovieToolsTests {
         assertNotNull(testMovie);
     }
 
-    /*
-
-
+    /**
+     * Add a movie to the watch list.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of variable test conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, that being either true or false.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: Values are assigned in the test itself, therefore all values will exist.
+     * Cardinality: There are enough values.
+     * Time: Everything in code happens in (correct) order.
      */
     @Test
     public void testAddMovieToWatchlist() {
@@ -66,6 +86,18 @@ public class MovieToolsTests {
         assertTrue(test);
     }
 
+    /**
+     * Delete a movie from the watch list.
+     *
+     * CORRECT Standards:
+     * Conformance: Value of testString conforms with expectations.
+     * Order: The values are ordered in order of usage.
+     * Range: The value is between a reasonable minimum and maximum, the value is either "passed" or not.
+     * Reference: All references in the test are mocked/provided in the test file itself.
+     * Existence: All used values are instantiated in the test itself, therefore they exist.
+     * Cardinality: There are enough values.
+     * Time: Everything in the test happens in (correct) order, including unregistering the mock instance.
+     */
     @Test
     public void testDeleteMovieFromWatchlist() {
         //Arrange
@@ -83,5 +115,7 @@ public class MovieToolsTests {
 
         //Assert
         assertEquals(testString[0], "passed");
+
+        movieToolsMockedStatic.close();
     }
 }

@@ -39,7 +39,7 @@ object ImportTools {
             language = language ?: DisplaySettings.LANGUAGE_EN,
             lastUpdatedMs = 0, // never, e.g. update next.
             favorite = favorite,
-            notify = notify ?: true,
+            notify = notifyUser ?: true,
             hidden = hidden,
             lastWatchedMs = last_watched_ms,
             ratingUser = rating_user

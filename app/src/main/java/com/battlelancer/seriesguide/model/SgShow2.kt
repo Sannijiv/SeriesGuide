@@ -70,7 +70,7 @@ data class SgShow2(
     @ColumnInfo(name = SgShow2Columns.UNWATCHED_COUNT) val unwatchedCount: Int = DBUtils.UNKNOWN_UNWATCHED_COUNT,
     @ColumnInfo(name = SgShow2Columns.FAVORITE) var favorite: Boolean = false,
     @ColumnInfo(name = SgShow2Columns.HIDDEN) var hidden: Boolean = false,
-    @ColumnInfo(name = SgShow2Columns.NOTIFY) var notify: Boolean = true,
+    @ColumnInfo(name = SgShow2Columns.NOTIFY_USER) var notify: Boolean = true,
     @ColumnInfo(name = SgShow2Columns.HEXAGON_MERGE_COMPLETE) val hexagonMergeComplete: Boolean = true
 ) {
     val releaseTimeOrDefault: Int

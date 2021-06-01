@@ -44,7 +44,7 @@ public class Show {
 
     /** SeriesGuide specific values */
     public boolean favorite;
-    public Boolean notify;
+    public Boolean notifyUser;
     public boolean hidden;
 
     public long last_watched_ms;

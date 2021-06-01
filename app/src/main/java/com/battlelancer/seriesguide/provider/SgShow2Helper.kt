@@ -220,7 +220,7 @@ data class SgShow2Minimal(
 data class SgShow2Notify(
     @ColumnInfo(name = SgShow2Columns._ID) val id: Long,
     @ColumnInfo(name = SgShow2Columns.TITLE) val title: String,
-    @ColumnInfo(name = SgShow2Columns.NOTIFY) val notify: Boolean
+    @ColumnInfo(name = SgShow2Columns.NOTIFY_USER) val notify: Boolean
 )
 
 data class SgShow2ForLists(
@@ -300,5 +300,5 @@ data class SgShow2CloudUpdate(
     @ColumnInfo(name = SgShow2Columns.LANGUAGE) var language: String?,
     @ColumnInfo(name = SgShow2Columns.FAVORITE) var favorite: Boolean,
     @ColumnInfo(name = SgShow2Columns.HIDDEN) var hidden: Boolean,
-    @ColumnInfo(name = SgShow2Columns.NOTIFY) var notify: Boolean
+    @ColumnInfo(name = SgShow2Columns.NOTIFY_USER) var notify: Boolean
 )

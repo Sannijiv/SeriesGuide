@@ -261,7 +261,7 @@ public class NotificationService {
     }
 
     // only if notifications are on: unwatched episodes released on or after arg
-    private static final String SELECTION = SgShow2Columns.NOTIFY + " = 1 AND "
+    private static final String SELECTION = SgShow2Columns.NOTIFY_USER + " = 1 AND "
             + SgEpisode2Columns.SELECTION_UNWATCHED + " AND "
             + SgEpisode2Columns.FIRSTAIREDMS + ">= ? AND "
             + SgEpisode2Columns.FIRSTAIREDMS + "< ?";

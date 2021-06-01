@@ -102,8 +102,8 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
     /**
      * Same as {@link JsonExportTask} but allows to set parameters.
      *
-     * @param isFullDump Whether to also export meta-data like descriptions, ratings, actors, etc.
-     * Increases file size about 2-4 times.
+     * @param isFullDump       Whether to also export meta-data like descriptions, ratings, actors, etc.
+     *                         Increases file size about 2-4 times.
      * @param isAutoBackupMode Whether to run an auto backup, also shows no result toasts.
      */
     public JsonExportTask(Context context, OnTaskProgressListener progressListener,
@@ -203,15 +203,15 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
 
     private int exportData(@BackupType int type) {
         // try to export all data
-        try {
+        Uri backupFileUri = getDataBackupFile(type);
+        try (ParcelFileDescriptor pfd = context.getContentResolver()
+                .openFileDescriptor(backupFileUri, "w")) {
             // ensure the user has selected a backup file
-            Uri backupFileUri = getDataBackupFile(type);
+
             if (backupFileUri == null) {
                 return ERROR_FILE_ACCESS;
             }
 
-            ParcelFileDescriptor pfd = context.getContentResolver()
-                    .openFileDescriptor(backupFileUri, "w");
             if (pfd == null) {
                 return ERROR_FILE_ACCESS;
             }
@@ -232,7 +232,6 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
             }
 
             // let the document provider know we're done.
-            pfd.close();
         } catch (FileNotFoundException e) {
             Timber.e(e, "Backup file not found.");
             removeBackupFileUri(type);

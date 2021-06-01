@@ -178,7 +178,7 @@ public class SeriesGuideContract {
          * Default: 1
          * </pre>
          */
-        String NOTIFY = "series_notify";
+        String NOTIFY_USER = "series_notify";
 
         /**
          * Whether this show was merged with data on Hexagon after signing in the last time.
@@ -617,7 +617,7 @@ public class SeriesGuideContract {
          * Default: 1
          * </pre>
          */
-        String NOTIFY = "series_notify";
+        String NOTIFY_USER = "series_notify";
 
         /**
          * Whether this show was merged with data on Hexagon after signing in the last time.
@@ -1253,7 +1253,7 @@ public class SeriesGuideContract {
 
         public static final String SELECTION_FAVORITES = Shows.FAVORITE + "=1";
         public static final String SELECTION_NOT_FAVORITES = Shows.FAVORITE + "=0";
-        public static final String SELECTION_NOTIFY = Shows.NOTIFY + "=1";
+        public static final String SELECTION_NOTIFY = Shows.NOTIFY_USER + "=1";
         public static final String SELECTION_WITH_NEXT_EPISODE = Shows.NEXTAIRDATEMS + "!="
                 + DBUtils.UNKNOWN_NEXT_RELEASE_DATE;
         public static final String SELECTION_WITH_NEXT_NOT_HIDDEN = Shows.NEXTEPISODE + "!='' AND "

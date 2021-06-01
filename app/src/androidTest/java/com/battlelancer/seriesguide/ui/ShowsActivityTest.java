@@ -4,6 +4,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -26,6 +27,7 @@ import com.battlelancer.seriesguide.provider.SeriesGuideDatabase;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,7 +36,7 @@ import org.junit.runner.RunWith;
 /**
  * To avoid flakiness, turn off system animations on the virtual or physical devices used for
  * testing. On your device, under Settings > Developer options, disable the following 3 settings:
- *
+ * <p>
  * - Window animation scale
  * - Transition animation scale
  * - Animator duration scale
@@ -68,7 +70,8 @@ public class ShowsActivityTest {
         }
 
         ViewInteraction floatingActionButton = onView(
-                allOf(withId(R.id.buttonShowsAdd), withContentDescription(R.string.action_shows_add),
+                allOf(withId(R.id.buttonShowsAdd),
+                        withContentDescription(R.string.action_shows_add),
                         childAtPosition(
                                 withId(R.id.rootLayoutShows),
                                 2),
@@ -149,6 +152,11 @@ public class ShowsActivityTest {
         }
 
         pressBack();
+
+        Assert.assertNotNull(recyclerView);
+        Assert.assertNotNull(recyclerView2);
+        Assert.assertNotNull(appCompatButton);
+        Assert.assertNotNull(appCompatButton2);
     }
 
     private static Matcher<View> childAtPosition(final Matcher<View> parentMatcher,

@@ -86,7 +86,7 @@ class NotificationSelectionDialogFragment : AppCompatDialogFragment() {
             SgRoomDatabase.getInstance(application).sgShow2Helper()
                 .getShowsNotifyStates(
                     SimpleSQLiteQuery(
-                        "SELECT ${SgShow2Columns._ID}, ${SgShow2Columns.TITLE}, ${SgShow2Columns.NOTIFY} " +
+                        "SELECT ${SgShow2Columns._ID}, ${SgShow2Columns.TITLE}, ${SgShow2Columns.NOTIFY_USER} " +
                                 "FROM ${Tables.SG_SHOW} " +
                                 "ORDER BY $orderClause"
                     )

@@ -121,7 +121,7 @@ public class SeriesGuideDatabase {
     static final int DBVER_39_SHOW_LAST_WATCHED = 39;
 
     /**
-     * Add {@link Shows#NOTIFY} flag to shows table.
+     * Add {@link Shows#NOTIFY_USER} flag to shows table.
      */
     static final int DBVER_40_NOTIFY_PER_SHOW = 40;
 
@@ -351,7 +351,7 @@ public class SeriesGuideDatabase {
             + ShowsColumns.UNWATCHED_COUNT + " INTEGER DEFAULT " + DBUtils.UNKNOWN_UNWATCHED_COUNT
             + ","
 
-            + ShowsColumns.NOTIFY + " INTEGER DEFAULT 1"
+            + ShowsColumns.NOTIFY_USER + " INTEGER DEFAULT 1"
 
             + ");";
 
@@ -566,9 +566,9 @@ public class SeriesGuideDatabase {
      * See {@link #DBVER_40_NOTIFY_PER_SHOW}.
      */
     static void upgradeToForty(@NonNull SupportSQLiteDatabase db) {
-        if (isTableColumnMissing(db, Tables.SHOWS, Shows.NOTIFY)) {
+        if (isTableColumnMissing(db, Tables.SHOWS, Shows.NOTIFY_USER)) {
             db.execSQL("ALTER TABLE " + Tables.SHOWS + " ADD COLUMN "
-                    + Shows.NOTIFY + " INTEGER DEFAULT 1;");
+                    + Shows.NOTIFY_USER + " INTEGER DEFAULT 1;");
 
 //            // check if notifications should be enabled only for favorite shows
 //            // noinspection deprecation

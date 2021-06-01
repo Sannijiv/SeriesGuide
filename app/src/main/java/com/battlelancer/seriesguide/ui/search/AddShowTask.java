@@ -53,7 +53,7 @@ public class AddShowTask extends AsyncTask<Void, String, Void> {
             }
         }
 
-        public static OnShowAddedEvent successful(int showTmdbId) {
+        public static OnShowAddedEvent onSuccess(int showTmdbId) {
             return new OnShowAddedEvent(showTmdbId, null, true);
         }
 
@@ -288,7 +288,7 @@ public class AddShowTask extends AsyncTask<Void, String, Void> {
         switch (result) {
             case PROGRESS_SUCCESS:
                 // do nothing, user will see show added to show list
-                event = OnShowAddedEvent.successful(showTmdbId);
+                event = OnShowAddedEvent.onSuccess(showTmdbId);
                 break;
             case PROGRESS_EXISTS:
                 event = OnShowAddedEvent.exists(context, showTmdbId, showTitle);

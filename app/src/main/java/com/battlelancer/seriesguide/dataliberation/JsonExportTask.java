@@ -289,7 +289,7 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
             show.tvdb_id = sgShow.getTvdbId();
             show.title = sgShow.getTitle();
             show.favorite = sgShow.getFavorite();
-            show.notify = sgShow.getNotify();
+            show.notifyUser = sgShow.getNotify();
             show.hidden = sgShow.getHidden();
             show.language = sgShow.getLanguage();
             show.release_time = sgShow.getReleaseTimeOrDefault();

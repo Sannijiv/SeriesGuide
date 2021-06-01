@@ -63,7 +63,7 @@ public class SgPicassoRequestHandler extends RequestHandler {
                 String url = ImageTools
                         .tmdbOrTvdbPosterUrl(showDetails.poster_path, context, false);
                 if (url != null) {
-                    return loadFromNetwork(Uri.parse(url), networkPolicy);
+                    return loadFromNetwork(Uri.parse(url));
                 }
             }
         }
@@ -76,18 +76,19 @@ public class SgPicassoRequestHandler extends RequestHandler {
             if (movieSummary != null && movieSummary.poster_path != null) {
                 final String imageUrl = TmdbSettings.getImageBaseUrl(context)
                         + TmdbSettings.POSTER_SIZE_SPEC_W342 + movieSummary.poster_path;
-                return loadFromNetwork(Uri.parse(imageUrl), networkPolicy);
+                return loadFromNetwork(Uri.parse(imageUrl));
             }
         }
 
         return null;
     }
 
-    private Result loadFromNetwork(Uri uri, int networkPolicy) throws IOException {
+    private Result loadFromNetwork(Uri uri) throws IOException {
         // because retry-count is fixed to 0 for custom request handlers
         // BitmapHunter forces the network policy to OFFLINE
         // https://github.com/square/picasso/issues/2038
         // until fixed, re-set the network policy here also (like ServiceUtils.loadWithPicasso)
+        int networkPolicy;
         if (Utils.isAllowedLargeDataConnection(context)) {
             networkPolicy = 0; // no policy
         } else {

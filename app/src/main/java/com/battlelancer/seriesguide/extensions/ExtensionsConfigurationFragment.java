@@ -360,10 +360,10 @@ public class ExtensionsConfigurationFragment extends Fragment {
             View div = listView.getChildAt(addButtonPosition - first);
 
             if (touchPoint.x > listView.getWidth() / 2) {
-                float scale = touchPoint.x - listView.getWidth() / 2;
-                scale /= (float) (listView.getWidth() / 5);
+                int scale = touchPoint.x - listView.getWidth() / 2;
+                scale /= (listView.getWidth() / 5);
                 ViewGroup.LayoutParams lp = floatView.getLayoutParams();
-                lp.height = Math.max(floatViewHeight, (int) (scale * floatViewHeight));
+                lp.height = Math.max(floatViewHeight, (scale * floatViewHeight));
                 floatView.setLayoutParams(lp);
             }
 

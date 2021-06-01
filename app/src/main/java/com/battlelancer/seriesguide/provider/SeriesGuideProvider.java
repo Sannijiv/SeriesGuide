@@ -575,6 +575,7 @@ public class SeriesGuideProvider extends ContentProvider {
         } finally {
             applyingBatch.set(false);
             room.endTransaction();
+            applyingBatch.remove();
         }
     }
 

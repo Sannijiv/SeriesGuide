@@ -207,14 +207,10 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
         try (ParcelFileDescriptor pfd = context.getContentResolver()
                 .openFileDescriptor(backupFileUri, "w")) {
             // ensure the user has selected a backup file
-
             if (backupFileUri == null) {
                 return ERROR_FILE_ACCESS;
             }
 
-            if (pfd == null) {
-                return ERROR_FILE_ACCESS;
-            }
             FileOutputStream out = new FileOutputStream(pfd.getFileDescriptor());
 
             // Even though using streams and FileOutputStream does not append by

@@ -74,7 +74,7 @@ public class TraktTools {
         if (!AndroidUtils.isNougatOrHigher()) {
             // before Android 7.0 string format seems to round half down, despite docs saying half up
             // it likely used DecimalFormat, which defaults to half even
-            BigDecimal bigDecimal = new BigDecimal(rating);
+            BigDecimal bigDecimal = BigDecimal.valueOf(rating);
             bigDecimal = bigDecimal.setScale(1, BigDecimal.ROUND_HALF_UP);
             rating = bigDecimal.doubleValue();
         }

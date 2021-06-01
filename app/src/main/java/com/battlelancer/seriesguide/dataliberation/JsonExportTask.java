@@ -209,7 +209,6 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
                         "w"); FileOutputStream out = new FileOutputStream(
                 pfd.getFileDescriptor())) {
             // ensure the user has selected a backup file
-
             if (backupFileUri == null) {
                 return ERROR_FILE_ACCESS;
             }

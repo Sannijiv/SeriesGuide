@@ -184,10 +184,6 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                     e.printStackTrace();
                 }
             }
-            if (pfd == null) {
-                Timber.e("File descriptor is null.");
-                return ERROR_FILE_ACCESS;
-            }
 
             if (!clearExistingData(type)) {
                 return ERROR;

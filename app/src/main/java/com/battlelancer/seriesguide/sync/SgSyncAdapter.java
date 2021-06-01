@@ -211,8 +211,9 @@ public class SgSyncAdapter extends AbstractThreadedSyncAdapter {
             long fakeLastUpdateTime;
             if (failed < 4) {
                 // 1, -3, -9, -27
+                Double failedToDouble = Double.valueOf(failed);
                 int posOrNegInterval = SYNC_INTERVAL_MINIMUM_MINUTES
-                        - (int) Math.pow(2, failed + 2);
+                        - (int) Math.pow(2, failedToDouble + 2);
                 fakeLastUpdateTime = currentTime - (posOrNegInterval * DateUtils.MINUTE_IN_MILLIS);
             } else {
                 fakeLastUpdateTime = currentTime;

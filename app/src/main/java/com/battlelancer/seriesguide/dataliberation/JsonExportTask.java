@@ -205,17 +205,13 @@ public class JsonExportTask extends AsyncTask<Void, Integer, Integer> {
         // try to export all data
         Uri backupFileUri = getDataBackupFile(type);
         try (ParcelFileDescriptor pfd = context.getContentResolver()
-                .openFileDescriptor(backupFileUri, "w")) {
+                .openFileDescriptor(backupFileUri,
+                        "w"); FileOutputStream out = new FileOutputStream(
+                pfd.getFileDescriptor())) {
             // ensure the user has selected a backup file
-
             if (backupFileUri == null) {
                 return ERROR_FILE_ACCESS;
             }
-
-            if (pfd == null) {
-                return ERROR_FILE_ACCESS;
-            }
-            FileOutputStream out = new FileOutputStream(pfd.getFileDescriptor());
 
             // Even though using streams and FileOutputStream does not append by
             // default, using Storage Access Framework just overwrites existing

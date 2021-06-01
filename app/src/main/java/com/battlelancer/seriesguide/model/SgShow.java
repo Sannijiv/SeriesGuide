@@ -125,6 +125,6 @@ public class SgShow {
     @ColumnInfo(name = Shows.UNWATCHED_COUNT)
     public int unwatchedCount = DBUtils.UNKNOWN_UNWATCHED_COUNT;
 
-    @ColumnInfo(name = Shows.NOTIFY)
-    public boolean notify = true;
+    @ColumnInfo(name = Shows.NOTIFY_USER)
+    public boolean notifyUser = true;
 }

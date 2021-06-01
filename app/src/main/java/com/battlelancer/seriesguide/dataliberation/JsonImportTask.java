@@ -42,6 +42,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.greenrobot.eventbus.EventBus;
 import timber.log.Timber;
 
@@ -169,13 +170,19 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                 return ERROR_FILE_ACCESS;
             }
             // ...and the file actually exists
-            ParcelFileDescriptor pfd;
+            ParcelFileDescriptor pfd = null;
             try {
                 pfd = context.getContentResolver().openFileDescriptor(backupFileUri, "r");
             } catch (FileNotFoundException | SecurityException e) {
                 Timber.e(e, "Backup file not found.");
                 errorCause = e.getMessage();
                 return ERROR_FILE_ACCESS;
+            } finally {
+                try {
+                    Objects.requireNonNull(pfd).close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             if (pfd == null) {
                 Timber.e("File descriptor is null.");
@@ -216,12 +223,13 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
             }
 
             File backupFile = backupFileOrNull.getFile();
-            FileInputStream in; // Closed by reader after importing.
-            try {
+            // Closed by reader after importing.
+            FileInputStream fileInputStream;
+            try (FileInputStream is = new FileInputStream(backupFile)) {
                 if (!backupFile.canRead()) {
                     return ERROR_FILE_ACCESS;
                 }
-                in = new FileInputStream(backupFile);
+                fileInputStream = is;
             } catch (Exception e) {
                 Timber.e(e, "Unable to open backup file.");
                 errorCause = e.getMessage();
@@ -235,7 +243,7 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
 
             // Access JSON from backup file and try to import data
             try {
-                importFromJson(type, in);
+                importFromJson(type, fileInputStream);
             } catch (JsonParseException | IOException | IllegalStateException e) {
                 // the given Json might not be valid or unreadable
                 Timber.e(e, "Import failed");
@@ -441,7 +449,9 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
             } else if (item.tvdbId > 0) {
                 externalId = String.valueOf(item.tvdbId);
             }
-            if (externalId == null) continue; // No external ID, skip
+            if (externalId == null) {
+                continue; // No external ID, skip
+            }
 
             // Generate list item ID from values, do not trust given item ID
             // (e.g. encoded list ID might not match)

@@ -273,11 +273,6 @@ public class TraktEpisodeSync {
                             traktSeasons.get(seasonNumber), syncSeasons, isInitialSync)) {
                         return false;
                     }
-                } else {
-                    if (!processCollectedTraktEpisodes(seasonId,
-                            traktSeasons.get(seasonNumber), syncSeasons, isInitialSync)) {
-                        return false;
-                    }
                 }
             } else {
                 // season not watched/collected on trakt

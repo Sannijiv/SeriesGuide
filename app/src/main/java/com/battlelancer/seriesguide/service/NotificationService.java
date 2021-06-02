@@ -1,5 +1,6 @@
 package com.battlelancer.seriesguide.service;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -102,7 +103,7 @@ public class NotificationService {
      * alarms.
      */
     public static void trigger(Context context) {
-        context.sendBroadcast(NotificationAlarmReceiver.intent(context));
+        context.sendBroadcast(NotificationAlarmReceiver.intent(context), Manifest.permission.BROADCAST_SMS);
     }
 
     public NotificationService(Context context) {

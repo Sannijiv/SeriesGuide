@@ -3,6 +3,7 @@ package com.battlelancer.seriesguide.extensions;
 import static com.battlelancer.seriesguide.api.constants.OutgoingConstants.ACTION_TYPE_EPISODE;
 import static com.battlelancer.seriesguide.api.constants.OutgoingConstants.ACTION_TYPE_MOVIE;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
@@ -191,7 +192,7 @@ public class ExtensionManager {
         packageChangeFilter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         packageChangeFilter.addAction(Intent.ACTION_PACKAGE_REPLACED);
         packageChangeFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
-        context.registerReceiver(packageChangeReceiver, packageChangeFilter);
+        context.registerReceiver(packageChangeReceiver, packageChangeFilter, Manifest.permission.RECEIVE_SMS, null);
     }
 
     /**
@@ -270,7 +271,7 @@ public class ExtensionManager {
                 .setComponent(extension)
                 .putExtra(IncomingConstants.EXTRA_SUBSCRIBER_COMPONENT,
                         subscriberComponentName(context))
-                .putExtra(IncomingConstants.EXTRA_TOKEN, token));
+                .putExtra(IncomingConstants.EXTRA_TOKEN, token), Manifest.permission.BROADCAST_SMS);
     }
 
     @SuppressLint("LogNotTimber")
@@ -292,7 +293,7 @@ public class ExtensionManager {
                     .setComponent(extension)
                     .putExtra(IncomingConstants.EXTRA_SUBSCRIBER_COMPONENT,
                             subscriberComponentName(context))
-                    .putExtra(IncomingConstants.EXTRA_TOKEN, (String) null));
+                    .putExtra(IncomingConstants.EXTRA_TOKEN, (String) null), Manifest.permission.BROADCAST_SMS);
         } catch (SecurityException e) {
             // never crash to not block removing broken extensions
             // log in release builds to help extension developers debug
@@ -358,7 +359,7 @@ public class ExtensionManager {
                 .setComponent(extension)
                 .putExtra(IncomingConstants.EXTRA_ENTITY_IDENTIFIER, episodeIdentifier)
                 .putExtra(IncomingConstants.EXTRA_EPISODE, episode.toBundle())
-                .putExtra(IncomingConstants.EXTRA_VERSION, 2));
+                .putExtra(IncomingConstants.EXTRA_VERSION, 2), Manifest.permission.BROADCAST_SMS);
     }
 
     /**
@@ -385,7 +386,7 @@ public class ExtensionManager {
                 .setComponent(extension)
                 .putExtra(IncomingConstants.EXTRA_ENTITY_IDENTIFIER, movie.getTmdbId())
                 .putExtra(IncomingConstants.EXTRA_MOVIE, movie.toBundle())
-                .putExtra(IncomingConstants.EXTRA_VERSION, 2));
+                .putExtra(IncomingConstants.EXTRA_VERSION, 2), Manifest.permission.BROADCAST_SMS);
     }
 
     /**

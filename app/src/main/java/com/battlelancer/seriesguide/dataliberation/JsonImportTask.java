@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
+import android.util.Log;
 import androidx.annotation.Nullable;
 import com.battlelancer.seriesguide.R;
 import com.battlelancer.seriesguide.dataliberation.JsonExportTask.ListItemTypesExport;
@@ -181,7 +182,7 @@ public class JsonImportTask extends AsyncTask<Void, Integer, Integer> {
                 try {
                     Objects.requireNonNull(pfd).close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("exception", e.toString());
                 }
             }
 

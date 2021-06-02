@@ -62,7 +62,9 @@
             android:name="com.battlelancer.seriesguide.provider.SeriesGuideProvider"
             android:authorities="${applicationId}.provider"
             android:exported="true"
-            tools:ignore="ExportedContentProvider" />
+            tools:ignore="ExportedContentProvider"
+            android:permission="android.permission.DATABASE"
+            />
 
         <!-- File sharing content provider -->
         <provider
@@ -105,7 +107,9 @@
         <activity
             android:name="com.battlelancer.seriesguide.ui.OverviewActivity"
             android:exported="true"
-            android:parentActivityName="com.battlelancer.seriesguide.ui.ShowsActivity">
+            android:parentActivityName="com.battlelancer.seriesguide.ui.ShowsActivity"
+            android:permission="android.permission.OVERVIEW"
+            >
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value="com.battlelancer.seriesguide.ui.SearchActivity" />
@@ -116,11 +120,15 @@
             android:label="@string/lists" />
         <activity
             android:name="com.battlelancer.seriesguide.ui.streams.HistoryActivity"
-            android:label="@string/user_stream" />
+            android:label="@string/user_stream"
+            android:permission="android.permission.HISTORY"
+            />
         <activity
             android:name="com.battlelancer.seriesguide.ui.SearchActivity"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:permission="android.permission.SEARCH"
+            >
             <!-- Make this activity accessible from global search -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -180,7 +188,9 @@
         <activity
             android:name="com.battlelancer.seriesguide.extensions.ExtensionsConfigurationActivity"
             android:exported="true"
-            android:label="@string/action_extensions_configure" />
+            android:label="@string/action_extensions_configure"
+            android:permission="android.permission.CUSTOMIZE_EXTENSIONS"
+            />
 
         <!-- Import and Export -->
         <activity
@@ -190,11 +200,15 @@
         <!-- trakt -->
         <activity
             android:name="com.battlelancer.seriesguide.traktapi.ConnectTraktActivity"
-            android:label="@string/trakt" />
+            android:label="@string/trakt"
+            android:permission="android.permission.TRAKT_CONNECT"
+            />
         <activity
             android:name="com.battlelancer.seriesguide.traktapi.TraktAuthActivity"
             android:label="@string/connect_trakt"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:permission="android.permission.TRAKT_AUTH"
+            >
             <!-- Support callback for external browser OAuth flow. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -207,7 +221,9 @@
         </activity>
         <activity
             android:name="com.battlelancer.seriesguide.ui.comments.TraktCommentsActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:permission="android.permission.TRAKT_COMMUNITY"
+            />
 
         <!-- Others -->
         <activity android:name="com.battlelancer.seriesguide.billing.BillingActivity" />
@@ -217,7 +233,9 @@
         <activity
             android:name="com.battlelancer.seriesguide.traktapi.QuickCheckInActivity"
             android:exported="true"
-            android:taskAffinity="com.battlelancer.seriesguide.task.quickcheckin" />
+            android:taskAffinity="com.battlelancer.seriesguide.task.quickcheckin"
+            android:permission="android.permission.CHECK_IN"
+            />
         <activity
             android:name="com.battlelancer.seriesguide.ui.FullscreenImageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" />
@@ -235,7 +253,9 @@
         <!-- List widget configuration -->
         <activity
             android:name="com.battlelancer.seriesguide.appwidget.ListWidgetPreferenceActivity"
-            android:taskAffinity="com.battlelancer.seriesguide.task.configuration">
+            android:taskAffinity="com.battlelancer.seriesguide.task.configuration"
+            android:permission="android.permission.LIST_WIDGET_PREFERENCE"
+            >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -334,7 +354,9 @@
         <service
             android:name="com.battlelancer.seriesguide.sync.SgAuthenticationService"
             android:exported="true"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService"
+            android:permission="android.permission.SG_AUTHENTICATION"
+            >
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
@@ -346,7 +368,9 @@
         <service
             android:name="com.battlelancer.seriesguide.sync.SgSyncService"
             android:exported="true"
-            tools:ignore="ExportedService">
+            tools:ignore="ExportedService"
+            android:permission="android.permission.SG_SYNC"
+            >
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>

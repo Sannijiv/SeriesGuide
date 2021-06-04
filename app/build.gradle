@@ -283,7 +283,7 @@ sonarqube {
         property "sonar.language", "kotlin"
         property "sonar.sources", "src/main/"
         property "sonar.login", "admin"
-        property "sonar.password", "Bruh123@"
+        property "sonar.password", "Bruh123"
     }
 }
 

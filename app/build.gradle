@@ -282,8 +282,8 @@ sonarqube {
         property "sonar.host.url", "http://localhost:9000/"
         property "sonar.language", "kotlin"
         property "sonar.sources", "src/main/"
-        property "sonar.login", "LOGIN"
-        property "sonar.password", "PASSWORD"
+        property "sonar.login", "admin"
+        property "sonar.password", "Bruh123@"
     }
 }
 

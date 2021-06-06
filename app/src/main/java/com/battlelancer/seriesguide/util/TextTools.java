@@ -82,7 +82,7 @@ public class TextTools {
      * Returns the title or if its empty a string like "Episode 2".
      */
     @NonNull
-    public static String getEpisodeTitle(Context context, @Nullable String title, int episode) {
+    public static String getEpisodeTitle(Context context, String title, int episode) {
         return TextUtils.isEmpty(title)
                 ? context.getString(R.string.episode_number, episode)
                 : title;

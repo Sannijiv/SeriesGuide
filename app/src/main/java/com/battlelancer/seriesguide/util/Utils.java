@@ -13,6 +13,7 @@ import android.content.pm.Signature;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,6 +24,7 @@ import androidx.annotation.AnyRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
@@ -38,6 +40,8 @@ import com.uwetrottmann.androidutils.AndroidUtils;
 import com.uwetrottmann.seriesguide.billing.localdb.GoldStatus;
 import com.uwetrottmann.seriesguide.billing.localdb.LocalBillingDb;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import timber.log.Timber;
 
 /**
@@ -157,7 +161,7 @@ public class Utils {
     @NonNull
     public static Intent getBillingActivityIntent(Context context) {
         if (Utils.isAmazonVersion()) {
-           return new Intent(context, AmazonBillingActivity.class);
+            return new Intent(context, AmazonBillingActivity.class);
         } else {
             return new Intent(context, BillingActivity.class);
         }
@@ -166,7 +170,8 @@ public class Utils {
     /**
      * Clear all files in files directory on external storage.
      */
-    public static void clearLegacyExternalFileCache(Context context) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void clearLegacyExternalFileCache(Context context) throws IOException {
         File path = context.getApplicationContext().getExternalFilesDir(null);
         if (path == null) {
             Timber.w("Could not clear cache, external storage not available");
@@ -177,7 +182,7 @@ public class Utils {
         if (files != null) {
             for (File file : files) {
                 //noinspection ResultOfMethodCallIgnored
-                file.delete();
+                Files.delete(file.toPath());
             }
         }
     }

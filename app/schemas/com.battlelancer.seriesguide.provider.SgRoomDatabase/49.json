@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 49,
-    "identityHash": "5da7695cd0881bd24633d0fea190cd41",
+    "identityHash": "056317e58a1b84fc8ee56ae7356630ae",
     "entities": [
       {
         "tableName": "series",
@@ -213,7 +213,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "notify",
+            "fieldPath": "notifyUser",
             "columnName": "series_notify",
             "affinity": "INTEGER",
             "notNull": true
@@ -1111,7 +1111,7 @@
       },
       {
         "tableName": "listitems",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `list_item_id` TEXT NOT NULL, `item_ref_id` TEXT NOT NULL, `item_type` INTEGER NOT NULL, `list_id` TEXT, FOREIGN KEY(`list_id`) REFERENCES `lists`(`list_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `list_item_id` TEXT, `item_ref_id` TEXT, `item_type` INTEGER NOT NULL, `list_id` TEXT, FOREIGN KEY(`list_id`) REFERENCES `lists`(`list_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -1123,13 +1123,13 @@
             "fieldPath": "listItemId",
             "columnName": "list_item_id",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "itemRefId",
             "columnName": "item_ref_id",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "type",
@@ -1442,7 +1442,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5da7695cd0881bd24633d0fea190cd41')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '056317e58a1b84fc8ee56ae7356630ae')"
     ]
   }
 }

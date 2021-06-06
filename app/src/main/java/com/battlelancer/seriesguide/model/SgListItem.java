@@ -28,11 +28,9 @@ public class SgListItem {
     public Integer id;
 
     @ColumnInfo(name = ListItems.LIST_ITEM_ID)
-    @NonNull
     public String listItemId;
 
     @ColumnInfo(name = ListItems.ITEM_REF_ID)
-    @NonNull
     public String itemRefId;
 
     @ColumnInfo(name = ListItems.TYPE)

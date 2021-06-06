@@ -35,7 +35,7 @@
 
     <application
         android:name="com.battlelancer.seriesguide.SgApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:backupAgent="com.battlelancer.seriesguide.SgBackupAgent"
         android:fullBackupContent="@xml/sg_full_backup_rules"
         android:fullBackupOnly="true"

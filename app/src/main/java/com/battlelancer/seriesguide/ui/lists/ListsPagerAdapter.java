@@ -45,9 +45,7 @@ public class ListsPagerAdapter extends MultiPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if (cursorLists == null || !dataValid) {
-            return null;
-        }
+        assert cursorLists != null;
         cursorLists.moveToPosition(position);
         return ListsFragment.newInstance(cursorLists.getString(0), position);
     }
@@ -97,7 +95,7 @@ public class ListsPagerAdapter extends MultiPagerAdapter {
     }
 
     public interface ListsQuery {
-        String[] PROJECTION = new String[] {
+        String[] PROJECTION = new String[]{
                 Lists.LIST_ID,
                 Lists.NAME
         };
